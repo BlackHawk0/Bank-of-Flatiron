@@ -2,14 +2,17 @@ import React, {useState} from "react";
 
 function AddTransactionForm({submittedData}) {
 
-  const [formData, setFormData] = useState({date:"", description:"", category:"", amount:0})
+  // state to control the form state
+  const [formData, setFormData] = useState({date:"", description:"", category:"", amount:0.01})
 
+  // handle change in input of form input elements
   function handleInputChange(e){
     //new object
     const newForm = {...formData, [e.target.name]:e.target.value}
     setFormData(newForm);
   }
 
+  // handle data on submission
   function handleOnSumbit(event){
     event.preventDefault()
     submittedData(formData)

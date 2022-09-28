@@ -1,6 +1,8 @@
 import React from "react";
 
 function Transaction({id,date,description,category,amount,handleDelete}) {
+  
+  // grabs value to be deleted
   function deleteTransaction(id){
     handleDelete(id)
   }

@@ -2,9 +2,9 @@ import React from "react";
 import Transaction from "./Transaction";
 
 function TransactionsList({list, onDeletion}) {
-  console.log(list);
 
 
+// map the transactions rendering one at a time to the Transaction component
 const newList = list.map(transaction =>(
     <Transaction 
         key={transaction.id} 

@@ -5,16 +5,17 @@ import AddTransactionForm from "./AddTransactionForm";
 
 function AccountContainer() {
 
+  // handle transaction state
   const [transaction, setTransaction] = useState([])
 
-
+// fetch data from the api
   useEffect(()=>{
     fetch('http://localhost:8001/transactions')
       .then(res => res.json())
       .then(data => setTransaction(data))
   }, [])
   
-
+  // sort the transaction ls=ist alphabetically based on catagory element
   const sortedList = transaction.sort((a, b) => {
       let category1 = a.category.toUpperCase();
       let category2 = b.category.toUpperCase();
@@ -27,6 +28,7 @@ function AccountContainer() {
       return 0;
     });
 
+  // add a transaction to the database
   function handleAddition(newTransaction){
     // setTransaction(transaction => [...transaction, newTransaction])
     fetch('http://localhost:8001/transactions', {
@@ -42,11 +44,13 @@ function AccountContainer() {
     .catch(err => console.log(err))
   }
 
+  // filter rendered data based on searched description
   function handleSearch(searchedTerm){
     const newState = transaction.filter(word => word.description.toLowerCase().includes(searchedTerm.toLowerCase()))
     setTransaction(newState)
   }
 
+  // delete an element from the db
   function handleDeletion(id){
     fetch(`http://localhost:8001/transactions/${id}`, {
       method: 'DELETE',

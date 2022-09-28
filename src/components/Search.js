@@ -2,6 +2,7 @@ import React from "react";
 
 function Search({searched}) {
 
+  // grabs search value
   function handleSearch(event){
     searched(event.target.value)
   }
